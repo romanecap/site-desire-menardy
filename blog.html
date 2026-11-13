@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const A = d.auteur;
+  document.title = `Blog · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <section class="rubrique r-doux" data-mot="Blog"><div class="w">
+      <div class="lab">${esc(A.nom)}</div><h2>Le blog</h2><div class="orn"></div>
+      <div class="frise">${d.articles.map(a => `
+      <a href="${lienArticle(a.id)}">
+        <div class="ph">${a.photos && a.photos[0] ? `<img src="${img(a.photos[0])}" alt="" loading="lazy">` : `<img class="defaut" src="${img(L.couverture)}" alt="" loading="lazy">`}${a.photos && a.photos.length > 1 ? `<span class="nb">${a.photos.length} photos</span>` : ''}</div>
+        <div><time>${dateFr(a.date)}</time><h3>${esc(a.titre)}</h3><p>${esc(a.resume)}</p><span class="lire">Lire l'article</span></div>
+      </a>`).join('')}</div>
+    </div></section>
+  </main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>

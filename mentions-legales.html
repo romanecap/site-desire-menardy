@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentions légales · Désiré Ménardy</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const M = d.mentions || {}, A = d.auteur;
+  // Une valeur commençant par « À compléter » est surlignée pour ne pas être oubliée
+  const v = x => /^à compléter/i.test(x || '') ? `<span class="a-completer">${esc(x)}</span>` : esc(x);
+  document.title = `Mentions légales · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main class="w legal"><div class="texte">
+    <div class="lab" style="text-align:center">Informations</div>
+    <h1>Mentions légales</h1>
+    ${M.majLe ? `<p class="maj">Dernière mise à jour : ${dateFr(M.majLe)}</p>` : ''}
+
+    <h2>Éditeur du site</h2>
+    <dl>
+      <dt>Éditeur</dt><dd>${v(M.editeur)}</dd>
+      ${M.statut ? `<dt>Statut</dt><dd>${v(M.statut)}</dd>` : ''}
+      <dt>Contact</dt><dd>${M.email ? `<a class="lien" href="mailto:${esc(M.email)}">${esc(M.email)}</a>` : ''}</dd>
+      <dt>Directeur de la publication</dt><dd>${v(M.directeur)}</dd>
+    </dl>
+    <p style="margin-top:14px;color:var(--gris);font-size:.95rem">Conformément à l'article 6-III-2 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, l'éditeur, personne physique agissant à titre non professionnel, a communiqué ses éléments d'identification à l'hébergeur.</p>
+
+    <h2>Hébergement</h2>
+    <dl>
+      <dt>Hébergeur</dt><dd>${v(M.hebergeurNom)}</dd>
+      <dt>Adresse</dt><dd>${v(M.hebergeurAdresse)}</dd>
+      ${M.hebergeurSite ? `<dt>Site</dt><dd><a class="lien" href="${url(M.hebergeurSite)}" target="_blank" rel="noopener">${esc(M.hebergeurSite.replace(/^https?:\/\//, ''))}</a></dd>` : ''}
+    </dl>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Les textes, la couverture du livre ${esc(d.livre.titre)}, les photographies et le logo présents sur ce site appartiennent à ${esc(A.nom)}, sauf mention contraire. Toute reproduction, même partielle, est interdite sans son autorisation écrite.</p>
+    <p>Les extraits d'articles de presse sont reproduits à titre de courte citation ; ils restent la propriété de leurs éditeurs respectifs.</p>
+
+    <h2>Données personnelles</h2>
+    ${(d.reglages || {}).goatcounter
+      ? `<p>Ce site ne comporte ni formulaire ni compte, et ne dépose aucun cookie.</p>
+    <p><b>Mesure d'audience.</b> Le site utilise GoatCounter pour compter les visites de façon anonyme : aucun cookie n'est déposé et aucune donnée ne permet de vous identifier ou de vous suivre d'un site à l'autre. Conformément aux recommandations de la CNIL, cet outil est dispensé de consentement.</p>`
+      : `<p>Ce site ne comporte ni formulaire, ni compte, ni outil de mesure d'audience, et ne dépose aucun cookie.</p>`}
+    <p>Si vous écrivez à l'auteur par e-mail, votre adresse et votre message servent uniquement à vous répondre. Ils ne sont ni vendus, ni transmis à des tiers. Vous pouvez demander à tout moment leur suppression en écrivant à l'adresse de contact ci-dessus.</p>
+    <p>Les polices de caractères sont hébergées directement sur ce site : aucune donnée n'est transmise à un service tiers lors de votre visite.</p>
+    <p>Vous pouvez adresser une réclamation à la CNIL (cnil.fr) si vous estimez que vos droits ne sont pas respectés.</p>
+
+    <h2>Liens externes</h2>
+    <p>Le site propose des liens vers des boutiques en ligne, des réseaux sociaux et des articles de presse. ${esc(A.nom)} n'est pas responsable du contenu de ces sites.</p>
+  </div></main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>

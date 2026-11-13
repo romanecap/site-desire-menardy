@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>L'auteur · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const A = d.auteur;
+  document.title = `L'auteur · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <section class="rubrique" data-mot="Auteur"><div class="w">
+      <div class="lab">L'auteur</div><h2>${esc(A.nom)}</h2><div class="orn"></div>  
+    <div class="compo">
+      <div class="pseudo">${(A.anecdotes || []).length ? '<div class="titre-col" style="background:none;border:0;padding:0">Un nom de plume choisi</div>' : ''}${(A.anecdotes || []).map(x => `<div><b>${esc(x.titre)}</b><span>${esc(x.texte)}</span></div>`).join('')}</div>
+      ${A.photo ? `<img class="milieu portrait-grand" src="${img(A.photo)}" alt="Portrait de ${esc(A.nom)}">` : '<span class="milieu"></span>'}
+      <div class="bio-col">${paras(A.bio)}${A.citation ? `<blockquote>« ${esc(A.citation)} »</blockquote>` : ''}</div>
+    </div>
+    </div></section>
+  </main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>

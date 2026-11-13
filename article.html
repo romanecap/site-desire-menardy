@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Journal · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const id = new URLSearchParams(location.search).get('a') || (decodeURIComponent(location.pathname).match(/article-([^/]+?)(\.html)?\/?$/) || [])[1];
+  const a = d.articles.find(x => x.id === id) || d.articles[0];
+  if (!a) { location.href = 'index.html'; return; }
+  document.title = `${a.titre} · ${d.auteur.nom}`;
+  const photos = (a.photos || []).filter(Boolean);
+  const autres = d.articles.filter(x => x !== a).slice(0, 3);
+
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <header class="art-tete"><div class="w">
+      <a class="lien retour" href="blog.html">← Blog</a>
+      <time>${dateFr(a.date)}</time>
+      <h1>${esc(a.titre)}</h1>
+      ${a.resume ? `<p>${esc(a.resume)}</p>` : ''}
+    </div></header>
+
+    ${photos.length ? `
+    <div class="diapo${photos.length === 1 ? ' seule' : ''}">
+      <div class="w"><div class="scene"><img id="grande" src="${img(photos[0])}" data-loupe alt=""></div>
+      <div class="ctrl"><button class="prec" aria-label="Photo précédente">←</button><span class="compteur"><span id="num">1</span> / ${photos.length}</span><button class="suiv" aria-label="Photo suivante">→</button></div>
+      <div class="vignettes">${photos.map((p, i) => `<button data-i="${i}" class="${i ? '' : 'on'}" aria-label="Photo ${i + 1}"><img src="${img(p)}" alt="" loading="lazy"></button>`).join('')}</div>
+    </div></div>` : ''}
+
+    <article class="w art-corps"><div class="texte">
+      ${paras(a.texte)}
+      <div class="pied">
+        ${a.lien ? `<a class="lien" href="${url(a.lien)}" target="_blank" rel="noopener">Voir le lien →</a>` : '<span></span>'}
+        <a class="lien" href="blog.html">Tous les articles</a>
+      </div>
+    </div></article>
+
+    ${autres.length ? `<section class="rubrique r-doux" data-mot="Blog"><div class="w"><div class="lab">Blog</div><h2>À lire aussi</h2><div class="orn"></div>
+      <div class="journal">${autres.map(x => `
+        <a class="carte" href="${lienArticle(x.id)}">
+          <div class="img">${x.photos && x.photos[0] ? `<img src="${img(x.photos[0])}" alt="" loading="lazy">` : `<img class="defaut" src="${img(d.livre.couverture)}" alt="" loading="lazy">`}</div>
+          <time>${dateFr(x.date)}</time><h3>${esc(x.titre)}</h3><p>${esc(x.resume)}</p>
+        </a>`).join('')}</div></div></section>` : ''}
+  </main>` + pied(d);
+
+  // Diaporama : flèches, vignettes, clavier, glisser du doigt ; clic = plein écran
+  if (photos.length > 1) {
+    let i = 0;
+    const g = document.getElementById('grande'), num = document.getElementById('num');
+    const vig = [...document.querySelectorAll('.vignettes button')];
+    const aller = n => {
+      i = (n + photos.length) % photos.length;
+      g.style.opacity = 0;
+      setTimeout(() => { g.src = img(photos[i]); g.style.opacity = 1; }, 150);
+      num.textContent = i + 1;
+      vig.forEach((b, k) => b.classList.toggle('on', k === i));
+    };
+    document.querySelector('.prec').onclick = () => aller(i - 1);
+    document.querySelector('.suiv').onclick = () => aller(i + 1);
+    vig.forEach(b => b.onclick = () => aller(+b.dataset.i));
+    addEventListener('keydown', e => { if (e.key === 'ArrowLeft') aller(i - 1); if (e.key === 'ArrowRight') aller(i + 1); });
+    let x0 = null;
+    g.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+    g.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) aller(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  }
+  finaliser();
+});
+</script>
+</body>
+</html>

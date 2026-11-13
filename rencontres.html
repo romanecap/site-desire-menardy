@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rencontres · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const A = d.auteur;
+  document.title = `Rencontres · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <section class="rubrique r-bleu" data-mot="Rencontres"><div class="w">
+      <div class="lab">Rencontres & dédicaces</div><h2>Venez le rencontrer</h2><div class="orn"></div>
+      ${blocRencontres(d, true)}
+    </div></section>
+    ${d.passees.length ? `<section class="rubrique r-doux" data-mot="Souvenirs"><div class="w">
+      <div class="lab">Déjà passées</div><h2>Les rencontres précédentes</h2><div class="orn"></div>
+      <div class="archives">${d.passees.map(p => { const x = jd(p.date); return `<article class="archive">
+        <div class="aff">${p.affiche ? `<img src="${img(p.affiche)}" data-loupe alt="Affiche" loading="lazy">` : ''}</div>
+        <div class="tx"><time>${jourFr(p.date)}</time><h3>${esc(p.lieu)}</h3><p>${esc(p.ville)}${p.horaires ? ' · ' + esc(p.horaires) : ''}</p></div></article>`; }).join('')}</div>
+    </div></section>` : ''}
+  </main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>

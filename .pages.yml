@@ -1,0 +1,261 @@
+# Interface d'édition du site (Pages CMS : app.pagescms.org)
+# Les rubriques sont rangées de la plus utilisée à la moins utilisée.
+
+media:
+  input: images
+  output: images
+  categories: [image]
+  rename: safe
+
+content:
+  # ---------- Ce qu'on modifie souvent ----------
+  - name: dedicaces
+    label: "✍️ Dédicaces & rencontres"
+    description: "Ajoutez une date : elle s'affiche en grand et dans le bandeau du haut. Une fois passée, elle se range toute seule."
+    type: file
+    path: content/dedicaces.json
+    format: json
+    fields:
+      - name: items
+        label: "Dates"
+        type: object
+        list: true
+        fields:
+          - { name: date, label: "Date", type: date, required: true, description: "Elle s'affiche toute seule, par exemple « Samedi 28 novembre 2026 »." }
+          - { name: horaires, label: "Horaires", type: string, description: "Par exemple : 10 h – 17 h" }
+          - { name: lieu, label: "Lieu", type: string, required: true, description: "Par exemple : Super U, Librairie Lu & Approuvé…" }
+          - { name: ville, label: "Ville", type: string, required: true }
+          - { name: affiche, label: "Affiche (facultatif)", type: image }
+
+  - name: articles
+    label: "📝 Blog"
+    description: "Racontez une dédicace, un salon, une bonne nouvelle… Chaque article a sa propre page avec un diaporama de photos."
+    type: file
+    path: content/articles.json
+    format: json
+    fields:
+      - name: items
+        label: "Articles"
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: "Titre", type: string, required: true }
+          - { name: date, label: "Date", type: date, required: true }
+          - { name: resume, label: "Résumé en une phrase", type: text, description: "Affiché sur la page d'accueil." }
+          - { name: photos, label: "Photos", type: image, options: { multiple: true }, description: "Vous pouvez en choisir plusieurs d'un coup. La première sert d'image principale." }
+          - { name: texte, label: "Texte de l'article", type: text, description: "Laissez une ligne vide entre deux paragraphes." }
+          - { name: lien, label: "Lien externe (facultatif)", type: string, description: "Par exemple une publication Facebook ou une vidéo." }
+
+  - name: temoignages
+    label: "💬 Avis de lecteurs"
+    description: "Pensez à demander l'accord de la personne."
+    type: file
+    path: content/temoignages.json
+    format: json
+    fields:
+      - { name: intro, label: "Texte d'introduction (page du livre)", type: text }
+      - name: items
+        label: "Avis"
+        type: object
+        list: true
+        fields:
+          - { name: date, label: "Date", type: date }
+          - { name: texte, label: "Avis", type: text, required: true, description: "Vous pouvez aller à la ligne." }
+          - { name: nom, label: "Signature (facultatif)", type: string, description: "Par exemple : Marie, Tours. Laissez vide pour ne rien afficher." }
+
+  - name: presse
+    label: "📰 Presse"
+    type: file
+    path: content/presse.json
+    format: json
+    fields:
+      - name: items
+        label: "Articles de presse"
+        type: object
+        list: true
+        fields:
+          - { name: media, label: "Journal ou média", type: string, required: true }
+          - { name: date, label: "Date", type: string, description: "Par exemple : 21 octobre 2026" }
+          - { name: titre, label: "Titre de l'article", type: string }
+          - { name: citation, label: "Courte citation", type: text }
+          - { name: image, label: "Photo de l'article", type: image }
+          - { name: lien, label: "Lien vers l'article en ligne", type: string }
+
+  - name: faq
+    label: "❓ FAQ (questions fréquentes)"
+    description: "Affichée sur la page du livre. Les questions s'ouvrent au clic."
+    type: file
+    path: content/faq.json
+    format: json
+    fields:
+      - { name: intro, label: "Texte d'introduction", type: text }
+      - name: items
+        label: "Questions"
+        type: object
+        list: true
+        fields:
+          - { name: question, label: "Question", type: string, required: true }
+          - { name: reponse, label: "Réponse", type: text, required: true, description: "Laissez une ligne vide entre deux paragraphes." }
+
+  - name: backstage
+    label: "📸 Backstage (coulisses)"
+    description: "Galerie de photos sur la page du livre. Un clic sur une photo l'ouvre en grand."
+    type: file
+    path: content/backstage.json
+    format: json
+    fields:
+      - { name: intro, label: "Texte d'introduction", type: text }
+      - name: items
+        label: "Photos"
+        type: object
+        list: true
+        fields:
+          - { name: image, label: "Photo", type: image, required: true }
+          - { name: legende, label: "Légende (facultatif)", type: text }
+          - { name: date, label: "Date (facultatif)", type: date }
+
+  - name: poesie
+    label: "🖋 Poésie"
+    description: "Chaque poème s'affiche sur la page Poésie, le plus récent en premier."
+    type: file
+    path: content/poesie.json
+    format: json
+    fields:
+      - { name: intro, label: "Texte d'introduction (facultatif)", type: text }
+      - name: items
+        label: "Poèmes"
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: "Titre", type: string, required: true }
+          - { name: date, label: "Date", type: date }
+          - { name: image, label: "Photo (facultatif)", type: image }
+          - { name: texte, label: "Poème", type: text, required: true, description: "Allez à la ligne pour chaque vers, et laissez une ligne vide entre deux strophes." }
+
+  - name: annonce
+    label: "📣 Annonce spéciale"
+    description: "Facultatif. Par défaut, le bandeau du haut affiche la prochaine dédicace."
+    type: file
+    path: content/annonce.json
+    format: json
+    fields:
+      - { name: visible, label: "Afficher cette annonce à la place de la prochaine dédicace", type: boolean }
+      - { name: titre, label: "Titre", type: string }
+      - { name: texte, label: "Texte", type: string }
+
+  # ---------- Ce qu'on modifie rarement ----------
+  - name: livre
+    label: "📖 Le livre"
+    type: file
+    path: content/livre.json
+    format: json
+    fields:
+      - { name: titre, label: "Titre", type: string, required: true }
+      - { name: genre, label: "Genre", type: string }
+      - { name: accroche, label: "Phrase d'accroche (sous le titre, en haut du site)", type: string }
+      - { name: couverture, label: "Couverture", type: image }
+      - { name: resume, label: "Résumé (4e de couverture)", type: text, description: "Laissez une ligne vide entre deux paragraphes." }
+      - { name: prefaceTexte, label: "Citation de la préface", type: text }
+      - { name: prefaceAuteur, label: "Auteur de la préface", type: string }
+      - { name: extrait, label: "Extrait du roman (facultatif)", type: text, description: "Les premières lignes par exemple. Vide = rubrique masquée." }
+      - { name: parution, label: "Date de parution", type: string, description: "Par exemple : Mai 2026" }
+      - { name: pages, label: "Nombre de pages", type: string }
+      - { name: isbn, label: "ISBN", type: string }
+      - { name: prixPapier, label: "Prix papier", type: string }
+      - { name: prixEbook, label: "Prix ebook", type: string }
+
+  - name: achats
+    label: "🛒 Où acheter"
+    description: "Écrivez « Ebook » dans l'étiquette pour qu'une boutique se range du côté ebook."
+    type: file
+    path: content/achats.json
+    format: json
+    fields:
+      - name: items
+        label: "Points de vente"
+        type: object
+        list: true
+        fields:
+          - { name: nom, label: "Nom", type: string, required: true }
+          - { name: type, label: "Étiquette", type: string, description: "Par exemple : Librairie, Ebook · Kindle…" }
+          - { name: detail, label: "Description", type: string }
+          - { name: lien, label: "Lien", type: string, description: "Adresse de la page (https://…). Vide = pas de flèche." }
+
+  - name: auteur
+    label: "👤 L'auteur"
+    type: file
+    path: content/auteur.json
+    format: json
+    fields:
+      - { name: nom, label: "Nom", type: string, required: true }
+      - { name: photo, label: "Photo", type: image }
+      - { name: bio, label: "Biographie", type: text, description: "Laissez une ligne vide entre deux paragraphes." }
+      - { name: citation, label: "Une phrase de l'auteur (citation)", type: text }
+      - name: anecdotes
+        label: "Petites cartes (l'origine du nom de plume)"
+        type: object
+        list: true
+        fields:
+          - { name: titre, label: "Mot en grand", type: string }
+          - { name: texte, label: "Explication courte", type: string }
+
+  - name: prochain
+    label: "✦ Mon Étoile (prochain livre)"
+    type: file
+    path: content/prochain.json
+    format: json
+    fields:
+      - { name: titre, label: "Titre (vide = rubrique masquée)", type: string }
+      - { name: annee, label: "Année de sortie", type: string }
+      - { name: image, label: "Image (couverture ou visuel)", type: image }
+      - { name: resume, label: "Présentation du livre (facultatif)", type: text, description: "Laissez une ligne vide entre deux paragraphes." }
+      - { name: texte, label: "Texte", type: text }
+
+  - name: contact
+    label: "✉️ Contact & réseaux"
+    type: file
+    path: content/contact.json
+    format: json
+    fields:
+      - { name: titre, label: "Titre", type: string }
+      - { name: email, label: "Adresse e-mail", type: string }
+      - { name: instagram, label: "Lien Instagram", type: string }
+      - { name: facebook, label: "Lien Facebook", type: string }
+      - { name: youtube, label: "Lien YouTube", type: string }
+      - { name: wattpad, label: "Lien Wattpad", type: string }
+
+  - name: partenaire
+    label: "🤝 Remerciements"
+    type: file
+    path: content/partenaire.json
+    format: json
+    fields:
+      - { name: nom, label: "Nom", type: string }
+      - { name: texte, label: "Texte", type: text }
+      - { name: lien, label: "Lien", type: string }
+
+  - name: mentions
+    label: "⚖️ Mentions légales"
+    type: file
+    path: content/mentions.json
+    format: json
+    fields:
+      - { name: editeur, label: "Éditeur du site", type: string, description: "Un particulier peut garder son nom de plume, à condition d'avoir donné sa vraie identité à l'hébergeur." }
+      - { name: statut, label: "Statut", type: string }
+      - { name: email, label: "E-mail de contact", type: string }
+      - { name: directeur, label: "Directeur de la publication", type: string }
+      - { name: hebergeurNom, label: "Hébergeur", type: string }
+      - { name: hebergeurAdresse, label: "Adresse de l'hébergeur", type: string }
+      - { name: hebergeurSite, label: "Site de l'hébergeur", type: string }
+      - { name: majLe, label: "Dernière mise à jour", type: date }
+
+  - name: reglages
+    label: "⚙️ Réglages techniques"
+    description: "À remplir une seule fois, au moment de la mise en ligne."
+    type: file
+    path: content/reglages.json
+    format: json
+    fields:
+      - { name: goatcounter, label: "Nom du compte GoatCounter (statistiques)", type: string, description: "Par exemple : desiremenardy. Vide = pas de statistiques." }
+      - { name: googleVerification, label: "Code de vérification Google Search Console", type: string, description: "Le code fourni par Google (balise meta), pour apparaître dans les recherches." }
+

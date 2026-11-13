@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon Étoile · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const P = d.prochain, A = d.auteur, C = d.contact;
+  document.title = `${P.titre} · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <section class="rubrique r-bleu" data-mot="Étoile"><div class="w">
+      <div class="etoile-page">
+        ${P.image ? `<img src="${img(P.image)}" data-loupe alt="${esc(P.titre)}">` : '<span></span>'}
+        <div>
+          <div class="lab">Le prochain roman de ${esc(A.nom)}</div>
+          <h1>${esc(P.titre)}</h1>
+          ${P.annee ? `<span class="bientot">Sortie prévue en ${esc(P.annee)}</span>` : ''}
+          <div class="txt">${paras(P.resume || P.texte)}</div>
+        </div>
+      </div>
+    </div></section>
+  </main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>

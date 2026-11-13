@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Poésie · Désiré Ménardy</title>
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="assets/polices.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site"></div>
+<script src="assets/secours.js"></script>
+<script src="assets/site.js"></script>
+<script>
+chargerContenu().then(d => {
+  const A = d.auteur;
+  const poemes = (d.poesie || []).filter(p => p.texte).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  document.title = `Poésie · ${A.nom}`;
+  document.getElementById('site').innerHTML = nav(d, false) + `
+  <main>
+    <section class="rubrique" data-mot="Poésie"><div class="w">
+      <div class="lab">${esc(A.nom)}</div><h2>Poésie</h2><div class="orn"></div>
+      ${d.poesie_intro ? `<p class="intro-rub">${esc(d.poesie_intro)}</p>` : ''}
+      <div class="poemes">${poemes.map(p => `
+        <article class="poeme">
+          ${p.image ? `<img class="poeme-photo" src="${img(p.image)}" data-loupe alt="">` : ''}
+          <h2>${esc(p.titre)}</h2>
+          <div class="vers">${paras(p.texte)}</div>
+          <div class="sign">${esc(A.nom)}${p.date ? `<time>${dateFr(p.date)}</time>` : ''}</div>
+        </article>`).join('')}</div>
+    </div></section>
+  </main>` + pied(d);
+  finaliser();
+});
+</script>
+</body>
+</html>
