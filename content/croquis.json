@@ -1,0 +1,66 @@
+{
+  "intro": "Le croquis que l'auteur a dessiné pour vérifier la cohérence des lieux, puis glissé dans les dernières pages du livre. Touchez un point pour le découvrir.",
+  "image": "images/backstage-croquis.webp",
+  "points": [
+    {
+      "x": 54,
+      "y": 14,
+      "titre": "Les locaux d'Élisabeth",
+      "texte": "Le cabinet de Madame Élisabeth Ngimpi, psychologue, au 21 rue de Rivoli."
+    },
+    {
+      "x": 63,
+      "y": 42,
+      "titre": "La salle d'attente",
+      "texte": "Notée « S. Attente » sur le croquis. Le petit personnage dessiné à côté s'y trouve."
+    },
+    {
+      "x": 56,
+      "y": 72,
+      "titre": "Le cabinet",
+      "texte": "La pièce où se déroulent les séances."
+    },
+    {
+      "x": 37,
+      "y": 56,
+      "titre": "Le personnage",
+      "texte": "Un petit bonhomme dessiné à l'entrée de la salle d'attente."
+    },
+    {
+      "x": 17,
+      "y": 59,
+      "titre": "A — l'ascenseur",
+      "texte": "« Je voulais vérifier que chaque porte, chaque fenêtre, l'escalier et l'ascenseur étaient correctement positionnés. »"
+    },
+    {
+      "x": 7,
+      "y": 55,
+      "titre": "É — l'escalier",
+      "texte": "L'escalier de l'immeuble, à côté de l'ascenseur."
+    },
+    {
+      "x": 11,
+      "y": 90,
+      "titre": "P — les portes",
+      "texte": "Chaque « P » du croquis marque une porte."
+    },
+    {
+      "x": 87,
+      "y": 47,
+      "titre": "F — les fenêtres",
+      "texte": "Chaque « F » marque une fenêtre, côté rue."
+    },
+    {
+      "x": 38,
+      "y": 96,
+      "titre": "Rue de Rivoli",
+      "texte": "La première des deux rues : l'adresse du cabinet."
+    },
+    {
+      "x": 95,
+      "y": 64,
+      "titre": "Rue du Cloche-Perce",
+      "texte": "La deuxième rue, le long du bâtiment. « Je voulais m'assurer que l'agencement des deux rues fonctionnait avec l'ensemble. »"
+    }
+  ]
+}

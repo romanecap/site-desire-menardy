@@ -1,0 +1,33 @@
+{
+  "intro": "Les personnages d'Une vie rêvée, et ce que l'auteur a confié sur leur origine. Touchez une carte pour la retourner.",
+  "items": [
+    {
+      "nom": "Alan",
+      "role": "Le héros",
+      "teaser": "Un homme comblé… jusqu'à ses premiers cauchemars.",
+      "texte": "À l'aube de ses cinquante-cinq ans, Alan a tout : une charmante femme, des enfants aimants, une famille unie, un métier passionnant. Jusqu'au jour où d'horribles songes commencent à hanter ses nuits.",
+      "image": ""
+    },
+    {
+      "nom": "Élisabeth Ngimpi",
+      "role": "La psychologue",
+      "teaser": "Son nom de famille cache un mot : lequel ?",
+      "texte": "Son prénom est une référence à Élisabeth Kübler-Ross, psychiatre dont l'auteur avait lu quelques écrits. Ngimpi signifie tout simplement « rêve » en javanais. Son cabinet se trouve au 21 rue de Rivoli, à Paris.",
+      "image": "images/backstage-croquis.webp"
+    },
+    {
+      "nom": "Délia",
+      "role": "Un souvenir d'enfance",
+      "teaser": "Un prénom venu tout droit de la jeunesse de l'auteur.",
+      "texte": "Le prénom vient de l'enfance de l'auteur : celui de la nouvelle compagne de son oncle, une très belle femme, douce et au charme fou, avec sa peau mate et ses cheveux bruns coupés courts.",
+      "image": ""
+    },
+    {
+      "nom": "Delivering Memories",
+      "role": "Le groupe du roman",
+      "teaser": "Ce groupe existe-t-il vraiment ?",
+      "texte": "Une pure invention ! Les initiales D. M. sont celles du pseudonyme de l'auteur, en clin d'œil à Depeche Mode. Traduit, le nom signifie à peu près « livrer des souvenirs ».",
+      "image": "images/backstage-delivering-memories.webp"
+    }
+  ]
+}

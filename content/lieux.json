@@ -1,0 +1,131 @@
+{
+  "intro": "Les lieux qui ont nourri Une vie rêvée, d'après les recherches de l'auteur. Touchez un point pour découvrir le lieu et ses sources.",
+  "items": [
+    {
+      "nom": "21 rue de Rivoli",
+      "ville": "Paris 4ᵉ",
+      "lat": 48.8556,
+      "lon": 2.3588,
+      "texte": "L'adresse du cabinet de Madame Élisabeth Ngimpi, psychologue.",
+      "sources": [
+        {
+          "titre": "21 rue de Rivoli, Paris 4ᵉ — l'immeuble",
+          "lien": "https://www.bercail.com/paris/75004/rue-de-rivoli/21"
+        },
+        {
+          "titre": "21 rue de Rivoli — prix de l'immobilier",
+          "lien": "https://www.meilleursagents.com/prix-immobilier/paris-75000/rue-de-rivoli-4274/21/"
+        },
+        {
+          "titre": "Plaque de psychologue en plexiglas",
+          "lien": "https://tglcreation.com/products/plaque-psychologue-plexiglass#/133-couleur_gravure-noir/119-couleur_plaque-or/146-fixation-4_trous_visserie"
+        }
+      ]
+    },
+    {
+      "nom": "Jardin des Tuileries",
+      "ville": "Paris 1ᵉʳ",
+      "lat": 48.8634,
+      "lon": 2.3275,
+      "texte": "Le point de départ du trajet jusqu'au 21 rue de Rivoli.",
+      "sources": []
+    },
+    {
+      "nom": "Ritz Paris",
+      "ville": "Paris 1ᵉʳ",
+      "lat": 48.8681,
+      "lon": 2.329,
+      "texte": "Un lieu consulté par l'auteur pendant ses recherches.",
+      "sources": [
+        {
+          "titre": "Ritz Paris",
+          "lien": "https://fr.wikipedia.org/wiki/Ritz_Paris"
+        },
+        {
+          "titre": "Mort de Lady Di : la dernière journée de Diana à Paris",
+          "lien": "https://www.20minutes.fr/monde/3337919-20220829-mort-lady-di-heure-heure-derniere-journee-diana-spencer-paris"
+        }
+      ]
+    },
+    {
+      "nom": "Aubervilliers",
+      "ville": "Seine-Saint-Denis",
+      "lat": 48.9146,
+      "lon": 2.3821,
+      "texte": "Une ville consultée par l'auteur pendant ses recherches.",
+      "sources": [
+        {
+          "titre": "Aubervilliers",
+          "lien": "https://fr.wikipedia.org/wiki/Aubervilliers"
+        }
+      ]
+    },
+    {
+      "nom": "Suresnes",
+      "ville": "Hauts-de-Seine",
+      "lat": 48.8711,
+      "lon": 2.229,
+      "texte": "Une ville consultée par l'auteur, où se trouve aussi le Studio Guillaume Tell.",
+      "sources": [
+        {
+          "titre": "Suresnes",
+          "lien": "https://fr.wikipedia.org/wiki/Suresnes"
+        },
+        {
+          "titre": "Studio Guillaume Tell",
+          "lien": "https://fr.wikipedia.org/wiki/Studio_Guillaume_Tell"
+        }
+      ]
+    },
+    {
+      "nom": "Bourges",
+      "ville": "Cher",
+      "lat": 47.081,
+      "lon": 2.3988,
+      "texte": "Une ville au cœur des recherches : lycée, études, festival et théâtre.",
+      "sources": [
+        {
+          "titre": "Lycée Alain-Fournier, Bourges",
+          "lien": "https://lycee-alain-fournier.fr/"
+        },
+        {
+          "titre": "Pôle Sup Sainte-Marie, Bourges — BTS",
+          "lien": "https://esbc.fr/ies-ste-marie-bts/pole-sup-formation-initiale-alternance-bac2-bac3-sainte-marie-bourges/"
+        },
+        {
+          "titre": "Printemps de Bourges",
+          "lien": "https://fr.wikipedia.org/wiki/Printemps_de_Bourges"
+        },
+        {
+          "titre": "Théâtre Jacques-Cœur, Bourges",
+          "lien": "https://www.ville-bourges.fr/site/theatre-jacques-coeur"
+        }
+      ]
+    },
+    {
+      "nom": "Lausanne",
+      "ville": "Suisse",
+      "lat": 46.5197,
+      "lon": 6.6323,
+      "texte": "Une ville au cœur des recherches : aéroport, hôpital et gendarmerie.",
+      "sources": [
+        {
+          "titre": "Lausanne",
+          "lien": "https://fr.wikipedia.org/wiki/Lausanne"
+        },
+        {
+          "titre": "Aéroport de Lausanne-Blécherette",
+          "lien": "https://fr.wikipedia.org/wiki/A%C3%A9roport_de_Lausanne-Bl%C3%A9cherette"
+        },
+        {
+          "titre": "CHUV — Centre hospitalier universitaire vaudois, Lausanne",
+          "lien": "https://www.chuv.ch/fr/pratique/lieux"
+        },
+        {
+          "titre": "Gendarmerie vaudoise",
+          "lien": "https://fr.wikipedia.org/wiki/Gendarmerie_vaudoise"
+        }
+      ]
+    }
+  ]
+}

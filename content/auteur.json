@@ -1,0 +1,21 @@
+{
+  "nom": "Désiré Ménardy",
+  "photo": "images/desire-dedicace.webp",
+  "bio": "Désiré Ménardy publie en 2026 son premier roman, Une vie rêvée.\n\nSon nom de plume n'a pas été choisi au hasard : Désiré est son second prénom, Ménardy le nom de jeune fille de sa mère. Et les initiales D. M. sont un clin d'œil à Depeche Mode, dont il est fan.\n\nL'écriture est née de deux événements marquants : la disparition d'une personne qui lui était chère, qui lui a inspiré ses premières pages, et sa rencontre avec l'autrice Agnès Simon, dont les encouragements l'ont poussé à écrire ce premier roman.",
+  "citation": "C'est une fiction dans laquelle j'ai mis tous les ingrédients que je voulais : le suspense, la description et le dialogue.",
+  "anecdotes": [
+    {
+      "titre": "Désiré",
+      "texte": "Son second prénom."
+    },
+    {
+      "titre": "Ménardy",
+      "texte": "Le nom de jeune fille de sa mère."
+    },
+    {
+      "titre": "D. M.",
+      "texte": "Un clin d'œil à Depeche Mode, dont il est fan."
+    }
+  ],
+  "banniere": "images/etoile-banniere.webp"
+}

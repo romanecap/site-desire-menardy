@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "type": "Librairie · papier",
+      "nom": "LU & APPROUVÉ",
+      "detail": "5 quai du Général de Gaulle, 37400 Amboise — 02 47 57 01 65",
+      "lien": "https://www.facebook.com/luapprouve"
+    },
+    {
+      "type": "Papier · 14,90 €",
+      "nom": "Auprès de l'auteur",
+      "detail": "Commandez votre exemplaire papier par e-mail.",
+      "lien": "mailto:desire.menardy@gmail.com?subject=Commande%20Une%20vie%20r%C3%AAv%C3%A9e"
+    },
+    {
+      "type": "Ebook",
+      "nom": "Bookelis",
+      "detail": "Sur la boutique de l'éditeur.",
+      "lien": "https://livres.bookelis.com/romans/78805-Une-Vie-Revee.html"
+    },
+    {
+      "type": "Ebook · Kindle",
+      "nom": "Amazon",
+      "detail": "Sur Kindle et l'application Kindle.",
+      "lien": "https://www.amazon.fr/dp/B0H7PBRMXQ"
+    },
+    {
+      "type": "Ebook",
+      "nom": "Rakuten Kobo",
+      "detail": "Sur liseuse Kobo et l'application.",
+      "lien": "https://www.kobo.com/fr/fr/ebook/une-vie-revee-3"
+    },
+    {
+      "type": "Ebook · ePub",
+      "nom": "Fnac",
+      "detail": "En livre numérique.",
+      "lien": "https://www.fnac.com/livre-numerique/a23338967/Desire-Menardy-Une-vie-revee"
+    },
+    {
+      "type": "Ebook",
+      "nom": "Google Play Livres",
+      "detail": "Sur Android, tablette et ordinateur.",
+      "lien": "https://books.google.fr/books?id=ZJDwEQAAQBAJ"
+    }
+  ]
+}

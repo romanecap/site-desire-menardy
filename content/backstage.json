@@ -1,0 +1,60 @@
+{
+  "intro": "Quelques images des coulisses d'Une vie rêvée.",
+  "items": [
+    {
+      "image": "images/backstage-etagere.webp",
+      "legende": "",
+      "date": "2026-04-21"
+    },
+    {
+      "image": "images/backstage-livre-2.webp",
+      "legende": "",
+      "date": "2026-04-23"
+    },
+    {
+      "image": "images/backstage-livre-3.webp",
+      "legende": "",
+      "date": "2026-04-25"
+    },
+    {
+      "image": "images/backstage-livre-4.webp",
+      "legende": "",
+      "date": "2026-04-27"
+    },
+    {
+      "image": "images/backstage-livre-5.webp",
+      "legende": "",
+      "date": "2026-04-29"
+    },
+    {
+      "image": "images/backstage-livre-6.webp",
+      "legende": "",
+      "date": "2026-05-01"
+    },
+    {
+      "image": "images/backstage-livre-7.webp",
+      "legende": "",
+      "date": "2026-05-03"
+    },
+    {
+      "image": "images/backstage-trajet.webp",
+      "legende": "Trajet : jardin des Tuileries, Paris 1ᵉʳ – 21 rue de Rivoli, Paris 4ᵉ",
+      "date": ""
+    },
+    {
+      "image": "images/backstage-croquis.webp",
+      "legende": "Madame Élisabeth Ngimpi, psychologue — 21 rue de Rivoli, Paris 4ᵉ",
+      "date": ""
+    },
+    {
+      "image": "images/backstage-coquelicot.webp",
+      "legende": "Le coquelicot est associé au sommeil, aux songes, à l'imaginaire et à l'abandon au monde des rêves.",
+      "date": ""
+    },
+    {
+      "image": "images/backstage-delivering-memories.webp",
+      "legende": "Delivering Memories_1985-2024",
+      "date": ""
+    }
+  ]
+}

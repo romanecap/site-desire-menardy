@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "titre": "Une vie rêvée dans La Nouvelle République",
+      "date": "2026-10-21",
+      "resume": "Le quotidien régional consacre un article à Une vie rêvée et à son auteur.",
+      "texte": "La Nouvelle République a consacré un article à Une vie rêvée dans son édition du 21 octobre 2026, sous le titre « Une vie rêvée selon Désiré Ménardy ».\n\nL'occasion de revenir sur l'origine du roman, le choix du pseudonyme et les rencontres qui ont donné envie à l'auteur d'écrire ce premier livre.",
+      "photos": [
+        "images/article-nr-2026-10-21.webp"
+      ],
+      "lien": "https://www.lanouvellerepublique.fr/indre-et-loire/commune/azay-sur-cher/j-ai-ete-marque-par-la-disparition-d-une-personne-il-raconte-comment-un-drame-a-inspire-son-premier-roman-1792510122"
+    },
+    {
+      "titre": "Première séance de dédicaces à La Ville-aux-Dames",
+      "date": "2026-10-24",
+      "resume": "Rencontre et dédicaces à l'Espace Culturel E.Leclerc de La Ville-aux-Dames.",
+      "texte": "Samedi 24 octobre 2026, de 10 h à 17 h, Désiré Ménardy a tenu sa première séance de rencontre et de dédicaces à l'Espace Culturel E.Leclerc de La Ville-aux-Dames.",
+      "photos": [
+        "images/affiche-2026-10-24.webp"
+      ],
+      "lien": ""
+    }
+  ]
+}

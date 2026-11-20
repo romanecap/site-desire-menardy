@@ -1,0 +1,51 @@
+# Publie le site sur GitHub Pages à chaque modification (par exemple un « Save » dans Pages CMS).
+# Rien à toucher ici. Réglages facultatifs dans Settings → Secrets and variables → Actions → Variables :
+#   SITE_URL   = adresse du site si vous branchez un nom de domaine (ex. https://desiremenardy.fr)
+#   ESPACE_URL = lien direct vers l'interface d'édition (utilisé par l'adresse /ecrire)
+name: Publier le site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Réduire les photos trop lourdes
+        run: |
+          pip install --quiet pillow pillow-heif
+          python3 outils/reduire_photos.py
+          if [ -n "$(git status --porcelain images content)" ]; then
+            git config user.name "Publication automatique"
+            git config user.email "actions@users.noreply.github.com"
+            git add images content
+            git commit -m "Photos réduites automatiquement"
+            git push
+          fi
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Préparer les pages
+        run: node outils/generer.js
+        env:
+          SITE_URL: ${{ vars.SITE_URL || steps.pages.outputs.base_url }}
+          ESPACE_URL: ${{ vars.ESPACE_URL }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deploiement
+        uses: actions/deploy-pages@v4

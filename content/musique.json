@@ -1,0 +1,37 @@
+{
+  "intro": "La musique traverse Une vie rêvée : un groupe imaginaire, un groupe adoré, un studio mythique. Survolez un disque pour le faire tourner.",
+  "items": [
+    {
+      "titre": "Delivering Memories",
+      "artiste": "Le groupe du roman",
+      "annees": "1985-2024",
+      "texte": "Un groupe entièrement inventé pour le livre. Ses initiales, D. M., sont celles de l'auteur ; son nom signifie à peu près « livrer des souvenirs ».",
+      "image": "images/backstage-delivering-memories.webp",
+      "lien": ""
+    },
+    {
+      "titre": "Depeche Mode",
+      "artiste": "Le groupe préféré de l'auteur",
+      "annees": "",
+      "texte": "Les initiales de son pseudonyme forment D. M., comme Depeche Mode. Le livre a même posé pour les coulisses à côté de leurs vinyles.",
+      "image": "images/backstage-etagere.webp",
+      "lien": "https://www.depechemode.com"
+    },
+    {
+      "titre": "Enjoy the Silence",
+      "artiste": "Depeche Mode",
+      "annees": "",
+      "texte": "Un clin d'œil glissé dans les coulisses : on le lit sur le pot de la photo du 23 avril.",
+      "image": "images/backstage-livre-2.webp",
+      "lien": "https://www.youtube.com/results?search_query=Depeche+Mode+Enjoy+the+Silence"
+    },
+    {
+      "titre": "Studio Guillaume Tell",
+      "artiste": "Suresnes",
+      "annees": "",
+      "texte": "Un studio d'enregistrement mythique, consulté par l'auteur pendant ses recherches.",
+      "image": "",
+      "lien": "https://fr.wikipedia.org/wiki/Studio_Guillaume_Tell"
+    }
+  ]
+}
