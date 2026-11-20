@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rencontres · Désiré Ménardy</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -18,8 +22,9 @@ chargerContenu().then(d => {
   document.title = `Rencontres · ${A.nom}`;
   document.getElementById('site').innerHTML = nav(d, false) + `
   <main>
-    <section class="rubrique r-bleu" data-mot="Rencontres"><div class="w">
-      <div class="lab">Rencontres & dédicaces</div><h2>Venez le rencontrer</h2><div class="orn"></div>
+    ${enTete({lab: 'Rencontres & dédicaces', titre: 'Venez le rencontrer', sous: 'Séances de dédicaces, salons et rencontres avec les lecteurs.'})}
+    <section class="rubrique r-bleu suite-tete"><div class="w">
+      <div class="lab">${d.aVenir.length ? 'Prochaine rencontre' : ''}</div>
       ${blocRencontres(d, true)}
     </div></section>
     ${d.passees.length ? `<section class="rubrique r-doux" data-mot="Souvenirs"><div class="w">

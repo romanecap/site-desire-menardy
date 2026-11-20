@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Poésie · Désiré Ménardy</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -19,19 +23,25 @@ chargerContenu().then(d => {
   document.title = `Poésie · ${A.nom}`;
   document.getElementById('site').innerHTML = nav(d, false) + `
   <main>
-    <section class="rubrique" data-mot="Poésie"><div class="w">
-      <div class="lab">${esc(A.nom)}</div><h2>Poésie</h2><div class="orn"></div>
-      ${d.poesie_intro ? `<p class="intro-rub">${esc(d.poesie_intro)}</p>` : ''}
+    ${enTete({lab: esc(A.nom), titre: 'Poésie', sous: d.poesie_intro ? esc(d.poesie_intro) : ''})}
+    <section class="rubrique"><div class="w">
       <div class="poemes">${poemes.map(p => `
         <article class="poeme">
           ${p.image ? `<img class="poeme-photo" src="${img(p.image)}" data-loupe alt="">` : ''}
           <h2>${esc(p.titre)}</h2>
-          <div class="vers">${paras(p.texte)}</div>
+          <div class="vers">${(() => { let i = 0; return String(p.texte || '').trim().split(/\n\s*\n/).map(st => `<p>${st.split('\n').map(v => `<span class="v" style="--i:${i++}">${esc(v)}</span>`).join('<br>')}</p>`).join(''); })()}</div>
+          <button class="btn btn-ligne lire-poeme" type="button">Lire le poème vers par vers</button>
           <div class="sign">${esc(A.nom)}${p.date ? `<time>${dateFr(p.date)}</time>` : ''}</div>
         </article>`).join('')}</div>
     </div></section>
   </main>` + pied(d);
   finaliser();
+  document.querySelectorAll('.lire-poeme').forEach(b => b.addEventListener('click', () => {
+    const v = b.closest('.poeme').querySelector('.vers');
+    v.classList.remove('vers-reveal'); void v.offsetWidth; v.classList.add('vers-reveal');
+    v.scrollIntoView({behavior: 'smooth', block: 'start'});
+    b.textContent = 'Relire le poème';
+  }));
 });
 </script>
 </body>

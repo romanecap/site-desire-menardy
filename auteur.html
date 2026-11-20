@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>L'auteur · Désiré Ménardy</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -18,8 +22,8 @@ chargerContenu().then(d => {
   document.title = `L'auteur · ${A.nom}`;
   document.getElementById('site').innerHTML = nav(d, false) + `
   <main>
-    <section class="rubrique" data-mot="Auteur"><div class="w">
-      <div class="lab">L'auteur</div><h2>${esc(A.nom)}</h2><div class="orn"></div>  
+    ${enTete({lab: "L'auteur", titre: esc(A.nom), image: A.banniere})}
+    <section class="rubrique"><div class="w">  
     <div class="compo">
       <div class="pseudo">${(A.anecdotes || []).length ? '<div class="titre-col" style="background:none;border:0;padding:0">Un nom de plume choisi</div>' : ''}${(A.anecdotes || []).map(x => `<div><b>${esc(x.titre)}</b><span>${esc(x.texte)}</span></div>`).join('')}</div>
       ${A.photo ? `<img class="milieu portrait-grand" src="${img(A.photo)}" alt="Portrait de ${esc(A.nom)}">` : '<span class="milieu"></span>'}

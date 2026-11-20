@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Blog · Désiré Ménardy</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -18,13 +22,9 @@ chargerContenu().then(d => {
   document.title = `Blog · ${A.nom}`;
   document.getElementById('site').innerHTML = nav(d, false) + `
   <main>
-    <section class="rubrique r-doux" data-mot="Blog"><div class="w">
-      <div class="lab">${esc(A.nom)}</div><h2>Le blog</h2><div class="orn"></div>
-      <div class="frise">${d.articles.map(a => `
-      <a href="${lienArticle(a.id)}">
-        <div class="ph">${a.photos && a.photos[0] ? `<img src="${img(a.photos[0])}" alt="" loading="lazy">` : `<img class="defaut" src="${img(L.couverture)}" alt="" loading="lazy">`}${a.photos && a.photos.length > 1 ? `<span class="nb">${a.photos.length} photos</span>` : ''}</div>
-        <div><time>${dateFr(a.date)}</time><h3>${esc(a.titre)}</h3><p>${esc(a.resume)}</p><span class="lire">Lire l'article</span></div>
-      </a>`).join('')}</div>
+    ${enTete({lab: esc(A.nom), titre: 'Le blog', sous: 'Rencontres, dédicaces et nouvelles du livre.'})}
+    <section class="rubrique r-doux"><div class="w">
+      ${blocBlog(d, 0, 2)}
     </div></section>
   </main>` + pied(d);
   finaliser();

@@ -7,7 +7,11 @@
 <meta name="description" content="Site officiel de Désiré Ménardy, auteur du roman de suspense psychologique Une vie rêvée : résumé, rencontres, presse et où acheter le livre.">
 <meta property="og:title" content="Désiré Ménardy · Une vie rêvée">
 <meta property="og:image" content="images/couverture.jpg">
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -27,7 +31,8 @@ chargerContenu().then(d => {
     <div class="lab">${lab}</div><h2>${titreR}</h2><div class="orn"></div>${corps}</div></section>`;
 
   document.getElementById('site').innerHTML = nav(d, true) + `
-  <header class="ouverture" role="img" aria-label="Le salon de la couverture, avec le tableau du coquelicot">
+  <main><section class="ouverture">
+    <div class="ouv-img" role="img" aria-label="Le salon de la couverture, avec le tableau du coquelicot"></div>
     <div class="w">
       <div>
         <div class="lab">${esc(L.genre)}</div>
@@ -39,20 +44,23 @@ chargerContenu().then(d => {
         <a class="btn btn-blanc" href="#acheter">Se procurer le livre</a><a class="btn btn-ligne" href="#livre">Le résumé</a>
       </div>
     </div>
-  </header>
+  </section>
 
   ${N.visible && N.titre
     ? `<div class="annonce"><span class="point">●</span>&nbsp; ${esc(N.titre)} &nbsp;<span>${esc(N.texte)}</span></div>`
-    : R ? `<a class="annonce" href="#rencontres"><span class="point">●</span>&nbsp; Prochaine dédicace : ${jourFr(R.date)} &nbsp;<span>${[esc(R.lieu), esc(R.ville)].filter(Boolean).join(', ')}${R.horaires ? ' · ' + esc(R.horaires) : ''}</span><span class="voir">Détails →</span></a>` : ''}
+    : R ? `<a class="annonce" href="#rencontres"><span class="point">●</span>&nbsp; <span class="rebours-jours" data-jour="${R.date}"></span>Prochaine dédicace : ${jourFr(R.date)} &nbsp;<span>${[esc(R.lieu), esc(R.ville)].filter(Boolean).join(', ')}${R.horaires ? ' · ' + esc(R.horaires) : ''}</span><span class="voir">Détails →</span></a>` : ''}
 
   ${rubrique('livre', 'Le livre', esc(L.titre), `
     <div class="quatrieme">${paras((L.resume || '').split(/\n\s*\n/)[0])}</div>
-    <p style="margin-top:28px"><a class="lien" href="une-vie-revee.html">Lire la suite de l'histoire</a></p>
+    <p style="margin-top:28px"><a class="lien" href="une-vie-revee.html">Lire la suite de l'histoire →</a></p>
     ${L.prefaceTexte ? `<div class="preface">« ${esc(L.prefaceTexte)} »<cite>Extrait de la préface · ${esc(prefacier)}</cite></div>` : ''}
     <div class="cartes-sp" style="margin-top:72px">${[
+      ['Personnages', 'personnages.html', `${(d.personnages || []).length} cartes à retourner`, null, 'A'],
       ['Backstage', 'backstage.html', `${(d.backstage || []).filter(x => x.image).length} photos des coulisses`, ((d.backstage || []).find(x => x.image) || {}).image],
       ['FAQ', 'faq.html', `${(d.faq || []).length} questions à l'auteur`, null, '?'],
-      ['Témoignages', 'temoignages.html', `${d.temoignages.length} avis de lecteurs`, null, '«']
+      ['Témoignages', 'temoignages.html', `${d.temoignages.length} avis de lecteurs`, null, '«'],
+      ['Bande-son', 'bande-son.html', `${(d.musique || []).length} disques autour du livre`, ((d.musique || []).find(x => x.image) || {}).image, '♪'],
+      ['Sources', 'sources.html', `${(d.sources || []).length} liens consultés`, null, '↗']
     ].map(([t, page, info, photo, ico]) => `<a class="carte-sp" href="${page}"><div class="sp-img">${photo ? `<img src="${img(photo)}" alt="" loading="lazy">` : `<span class="sp-ico">${ico}</span>`}</div><div class="sp-tx"><h3>${t}</h3><p>${info}</p><span class="lire">Découvrir →</span></div></a>`).join('')}</div>`)}
 
   ${rubrique('rencontres', 'Rencontres & dédicaces', 'Venez le rencontrer', blocRencontres(d) + `<p style="margin-top:56px"><a class="btn btn-ligne" href="rencontres.html">Toutes les rencontres</a></p>`, !d.dedicaces.length)}
@@ -74,23 +82,22 @@ chargerContenu().then(d => {
     </div></div></section>` : ''}
 
   ${rubrique('journal', 'Blog', 'Les dernières nouvelles', `
-    <div class="frise">${d.articles.slice(0, 3).map(a => `
-      <a href="${lienArticle(a.id)}">
-        <div class="ph">${a.photos && a.photos[0] ? `<img src="${img(a.photos[0])}" alt="" loading="lazy">` : `<img class="defaut" src="${img(L.couverture)}" alt="" loading="lazy">`}${a.photos && a.photos.length > 1 ? `<span class="nb">${a.photos.length} photos</span>` : ''}</div>
-        <div><time>${dateFr(a.date)}</time><h3>${esc(a.titre)}</h3><p>${esc(a.resume)}</p><span class="lire">Lire l'article</span></div>
-      </a>`).join('')}</div>
+    ${blocBlog(d, 3)}
     <p style="margin-top:56px"><a class="btn btn-ligne" href="blog.html">Tous les articles</a></p>`, !d.articles.length)}
 
-  ${rubrique('presse', 'Presse', 'Ils en parlent', d.presse.map(P => `
-    <div class="vu-dans">
-      <span class="ils">Vu dans</span>
-      <span class="nom-media">${esc(P.media)}</span>
-      ${P.image ? `<img class="mini" src="${img(P.image)}" data-loupe alt="Article de ${esc(P.media)}">` : ''}
-      ${P.lien ? `<a class="lien" href="${url(P.lien)}" target="_blank" rel="noopener">${esc(P.date)} · Lire l'article</a>` : `<span>${esc(P.date)}</span>`}
-    </div>`).join(''), !d.presse.length)}
+  ${rubrique('presse', 'Presse', 'Ils en parlent', `<div class="revue">${d.presse.map(P => `
+    <article class="coupure-art">
+      ${P.image ? `<figure class="cp-papier" data-loupe="${img(P.image)}"><span class="scotch" aria-hidden="true"></span><img src="${img(P.image)}" alt="Article de ${esc(P.media)}" loading="lazy"><figcaption>Agrandir</figcaption></figure>` : ''}
+      <div class="cp-texte">
+        <div class="cp-entete"><span class="cp-nom">${esc(P.media)}</span><span class="cp-date">${esc(P.date)}</span></div>
+        ${P.citation ? `<blockquote>« ${esc(P.citation)} »</blockquote>` : ''}
+        ${P.titre ? `<p class="cp-titre">${esc(P.titre)}</p>` : ''}
+        ${P.lien ? `<a class="btn btn-ligne" href="${url(P.lien)}" target="_blank" rel="noopener">Lire l'article</a>` : ''}
+      </div>
+    </article>`).join('')}</div>`, !d.presse.length)}
 
   ${rubrique('lecteurs', 'Lecteurs', "Ils l'ont lu", `
-    <div class="avis-cartes">${d.temoignages.slice().sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 3).map(t => `<blockquote>${esc(t.texte.replace(/\s*\n\s*/g, ' '))}${t.nom ? `<br><small>${esc(t.nom)}</small>` : ''}</blockquote>`).join('')}</div>
+    <div class="avis-cartes">${d.temoignages.slice().sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 3).map(t => `<blockquote>${esc((x => x.length > 230 ? x.slice(0, x.lastIndexOf(' ', 220)) + '…' : x)(t.texte.replace(/\s*\n\s*/g, ' ')))}${t.nom ? `<br><small>${esc(t.nom)}</small>` : ''}</blockquote>`).join('')}</div>
     ${d.temoignages.length > 3 ? `<p style="margin-top:56px"><a class="btn btn-blanc" href="temoignages.html">Lire les témoignages</a></p>` : ''}`, !d.temoignages.length)}
 
   ${rubrique('acheter', 'Où le trouver', 'Se procurer le livre', (() => {
@@ -105,7 +112,7 @@ chargerContenu().then(d => {
       <div class="format"><div class="prix">${esc(L.prixEbook)}</div><div class="nom">Ebook</div><div class="liste">${ebook.map(bouton).join('')}</div></div>
     </div>`;
   })())}
-  ` + pied(d);
+  </main>` + pied(d);
 
   finaliser();
 });

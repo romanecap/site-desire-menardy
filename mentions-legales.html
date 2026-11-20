@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mentions légales · Désiré Ménardy</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -20,10 +24,8 @@ chargerContenu().then(d => {
   const v = x => /^à compléter/i.test(x || '') ? `<span class="a-completer">${esc(x)}</span>` : esc(x);
   document.title = `Mentions légales · ${A.nom}`;
   document.getElementById('site').innerHTML = nav(d, false) + `
-  <main class="w legal"><div class="texte">
-    <div class="lab" style="text-align:center">Informations</div>
-    <h1>Mentions légales</h1>
-    ${M.majLe ? `<p class="maj">Dernière mise à jour : ${dateFr(M.majLe)}</p>` : ''}
+  <main>${enTete({lab: 'Informations', titre: 'Mentions légales', sous: M.majLe ? `Dernière mise à jour : ${dateFr(M.majLe)}` : ''})}
+  <div class="w legal"><div class="texte">
 
     <h2>Éditeur du site</h2>
     <dl>
@@ -56,7 +58,7 @@ chargerContenu().then(d => {
 
     <h2>Liens externes</h2>
     <p>Le site propose des liens vers des boutiques en ligne, des réseaux sociaux et des articles de presse. ${esc(A.nom)} n'est pas responsable du contenu de ces sites.</p>
-  </div></main>` + pied(d);
+  </div></div></main>` + pied(d);
   finaliser();
 });
 </script>

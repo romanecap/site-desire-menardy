@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Journal · Désiré Ménardy</title>
-<link rel="icon" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1c3b4f">
 <link rel="stylesheet" href="assets/polices.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -23,12 +27,7 @@ chargerContenu().then(d => {
 
   document.getElementById('site').innerHTML = nav(d, false) + `
   <main>
-    <header class="art-tete"><div class="w">
-      <a class="lien retour" href="blog.html">← Blog</a>
-      <time>${dateFr(a.date)}</time>
-      <h1>${esc(a.titre)}</h1>
-      ${a.resume ? `<p>${esc(a.resume)}</p>` : ''}
-    </div></header>
+    ${enTete({retour: '<a class="retour" href="blog.html">← Blog</a>', lab: dateFr(a.date), titre: esc(a.titre), sous: a.resume ? esc(a.resume) : ''})}
 
     ${photos.length ? `
     <div class="diapo${photos.length === 1 ? ' seule' : ''}">
